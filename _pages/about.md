@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Reserach Scientist at <a href='https://www.epicgames.com'>Epic Games</a>.
 
 profile:
   align: right
@@ -13,14 +13,13 @@ profile:
     <p>123 your address street</p>
     <p>Your City, State 12345</p>
 
-news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
+news: false  # includes a list of news items
+latest_posts: false  # includes a list of the newest posts
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am a Research Scientist at [Epic Games](https://www.epicgames.com) working on developing next generation digital humans.
+Previously, I did my PhD in Computer Graphics and Computer Vision at the [Max-Planck Institute for Informatics](https://www.mpi-inf.mpg.de/departments/computer-graphics) with [Prof. Christian Theobalt](https://people.mpi-inf.mpg.de/~theobalt/). I spent a year at [Weta Digital](https://www.wetafx.co.nz/) and lead a group on Optical Performance Capture at the [Max-Planck Center for Visual Computing and Communication](https://www.mpc-vcc.org/). I then cofounded [The Captury](https://www.thecaptury.com/) to bring a real-time markerless motion capture system to market, and moved to [Facebook Reality Labs](https://www.facebook.com/careers/life/facebook-reality-labs-turning-ideas-into-realities) to start working on full body virtual humans, before joining Epic in 2020.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+My research interests span a wide range of topics from computer graphics, geometric modeling, animation, and computer vision. My main focus lies on developing new approaches and tools to enable creating and controlling fully photorealistic and believable digital human avatars.
