@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Reserach Scientist at <a href='https://www.epicgames.com'>Epic Games</a>.
+subtitle: Research Scientist at <a href='https://www.epicgames.com'>Epic Games</a>.
 
 profile:
   align: right
