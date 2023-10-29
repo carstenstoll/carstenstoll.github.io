@@ -6,23 +6,12 @@
     - name: Languages
       value: German, English
 
-- title: Education
-  type: time_table
-  contents:
-    - title: PhD
-      institution: Max Planck Institute for Informatics / University of Saarland
-      year: 2004-2009
-
-    - title: Diploma in Computer Science
-      institution: TU Darmstadt
-      year: 1999-2004
-
 - title: Experience
   type: time_table
   contents:
-    - title: Epic Games
-      institution: The Captury
-      year: 2020-
+    - title: Research Scientist
+      institution: Epic Games
+      year: since 2020
 
     - title: Research Scientist
       institution: Facebook / Oculus / Meta
@@ -52,5 +41,16 @@
     - title: Visiting Researcher
       institution: Stanford University AI Lab
       year: 2008
+
+- title: Education
+  type: time_table
+  contents:
+    - title: PhD
+      institution: Max Planck Institute for Informatics / University of Saarland
+      year: 2004-2009
+
+    - title: Diploma in Computer Science
+      institution: TU Darmstadt
+      year: 1999-2004
 
 
