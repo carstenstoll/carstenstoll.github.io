@@ -20,9 +20,10 @@ Previously, I did my PhD in Computer Graphics and Computer Vision at the [Max-Pl
 
 My research interests span a wide range of topics from computer graphics, geometric modeling, animation, and computer vision. My main focus lies on developing new approaches and tools to enable creating and controlling fully photorealistic and believable digital human avatars.
 
+
 ---
-## Publications
-#### (in reversed chronological order)
+### Publications
+###### (in reverse chronological order)
 
 <div class="publications">
 
