@@ -1,6 +1,6 @@
 ---
-layout: about
-title: about
+layout: Carsten Stoll
+title: Carsten Stoll
 permalink: /
 subtitle: Research Scientist at <a href='https://www.epicgames.com'>Epic Games</a>.
 
