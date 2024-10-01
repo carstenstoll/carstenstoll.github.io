@@ -33,7 +33,7 @@ My research interests span a wide range of topics from computer graphics, geomet
 ##### Momentum
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/momentum.png class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/momentum.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</A> library for human kinematics and numerical optimization that was used to prototype markerless motion capture algorithms and was used for early versions of the Oculus VR headset upper body tracking.
