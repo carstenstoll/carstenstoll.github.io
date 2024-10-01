@@ -24,7 +24,7 @@ My research interests span a wide range of topics from computer graphics, geomet
 ##### ML Deformer
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/mldeformer.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/mldeformer.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         At EPIC I developed the ML model driving Unreal Engine's [ML Deformer](https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample) plugin that can be used to create a high-fidelity next-generation character with deformations driven by full muscle, flesh, and cloth simulation running in real-time. 
