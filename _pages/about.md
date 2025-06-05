@@ -2,7 +2,7 @@
 layout: about
 title: home
 permalink: /
-subtitle: I am a Research Scientist at [Meta](https://www.meta.com), specializing in the development next generation digital humans.
+subtitle: I am a Research Scientist at <a href='https://www.meta.com'>Meta</a>, specializing in the development next generation digital humans.
 
 profile:
   align: right
