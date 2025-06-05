@@ -2,7 +2,7 @@
 layout: about
 title: home
 permalink: /
-subtitle: Research Scientist at <a href='https://www.epicgames.com'>Epic Games</a>.
+subtitle: Research Scientist at <a href='https://www.meta.com'>Meta</a>.
 
 profile:
   align: right
@@ -22,13 +22,22 @@ I earned my PhD in Computer Graphics and Computer Vision from the [Max-Planck In
 My research interests span a wide range of topics from computer graphics, geometric modeling, animation, and computer vision. My primary goal is to advance the technology and tools to create and control fully photorealistic and believable digital human avatars.
 
 ### Projects
+##### Metahuman Bodies
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/mhbody.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        At <a href="https://www.epicgames.com">Epic Games</a> I lead the resarch and technical development of a parametric body model for MetaHumans, released with <a href="https://www.metahuman.com/en-US/news/metahuman-leaves-early-access-with-a-feature-packed-new-release">Unreal Engine 5.6</A>. While prior versions of MetaHumans were based on discrete body types, the parametric models allow fine grained direct and measurement based editing of body shapes.
+    </div>
+</div>
 ##### ML Deformer
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html path="assets/img/mldeformer.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        At <a href="https://www.epicgames.com">Epic Games</a> I developed the ML model driving Unreal Engine's <a href="https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample">ML Deformer</A> plugin that can be used to create a high-fidelity next-generation character with deformations driven by full muscle, flesh, and cloth simulation running in real-time. 
+        I also developed the ML model driving Unreal Engine's <a href="https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample">ML Deformer</A> plugin that can be used to create a high-fidelity next-generation character with deformations driven by full muscle, flesh, and cloth simulation running in real-time. ML Deformer is now widely used in game development such as for example the Witcher 4 tech demo shown at Unreal Fest 2025.
     </div>
 </div>
 ##### Momentum
