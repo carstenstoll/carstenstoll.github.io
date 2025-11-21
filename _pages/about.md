@@ -15,7 +15,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I earned my PhD in Computer Graphics and Computer Vision from the [Max-Planck Institute for Informatics](https://www.mpi-inf.mpg.de/departments/computer-graphics) with [Prof. Christian Theobalt](https://people.mpi-inf.mpg.de/~theobalt/). I also lead a group on Optical Performance Capture at the [Max-Planck Center for Visual Computing and Communication](https://www.mpc-vcc.org/) and spent a year as visiting researacher at [Weta Digital](https://www.wetafx.co.nz/). I cofounded [The Captury](https://www.thecaptury.com/), a company focused on real-time markerless motion capture, and then joined [Facebook Reality Labs](https://www.facebook.com/careers/life/facebook-reality-labs-turning-ideas-into-realities) to work on full body virtual humans. In 2020 I joined [Epic Games](https://www.epicgames.com) to work on next generation Metahumans and machine learning methods for real time worlds. In 2025 I rejoined Meta to help push Virtual Humans to the next level.
+I earned my PhD in Computer Graphics and Computer Vision from the [Max-Planck Institute for Informatics](https://www.mpi-inf.mpg.de/departments/computer-graphics) with [Prof. Christian Theobalt](https://people.mpi-inf.mpg.de/~theobalt/). I also lead a group on Optical Performance Capture at the [Max-Planck Center for Visual Computing and Communication](https://www.mpc-vcc.org/) and spent a year as visiting researcher at [Weta Digital](https://www.wetafx.co.nz/). I cofounded [The Captury](https://www.thecaptury.com/), a company focused on real-time markerless motion capture, and then joined [Facebook Reality Labs](https://www.facebook.com/careers/life/facebook-reality-labs-turning-ideas-into-realities) to work on full body virtual humans. In 2020 I joined [Epic Games](https://www.epicgames.com) to work on next generation Metahumans and machine learning methods for real time worlds. In 2025 I rejoined Meta to help push Virtual Humans to the next level.
 
 My research interests span a wide range of topics from computer graphics, geometric modeling, animation, and computer vision. My primary goal is to advance the technology and tools to create and control fully photorealistic and believable digital human avatars.
 
@@ -44,7 +44,9 @@ My research interests span a wide range of topics from computer graphics, geomet
         {% include figure.html path="assets/img/momentum.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</A> library for human kinematics and numerical optimization that was used to prototype markerless motion capture algorithms and was used for early versions of the Oculus VR headset upper body tracking.
+        At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</a> library for human kinematics and numerical optimization that was used to prototype markerless motion capture algorithms and was used for early versions of the Oculus VR headset upper body tracking.
+        
+        We also published MHR, the <a href="https://facebookincubator.github.io/mhr/">Momentum Human Rig</a>, which is an open source parametric body model to use with Momentum.
     </div>
 </div>
 
