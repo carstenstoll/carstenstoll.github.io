@@ -46,7 +46,7 @@ My research interests span a wide range of topics from computer graphics, geomet
     <div class="col-sm mt-3 mt-md-0">
         At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</a> library for human kinematics and numerical optimization that was used to prototype markerless motion capture algorithms and was used for early versions of the Oculus VR headset upper body tracking.
         
-        We also published MHR, the <a href="https://facebookincubator.github.io/mhr/">Momentum Human Rig</a>, which is an open source parametric body model to use with Momentum.
+        We also published MHR, the <a href="https://github.com/facebookresearch/mhr">Momentum Human Rig</a>, which is an open source parametric body model to use with Momentum.
     </div>
 </div>
 
