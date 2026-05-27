@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carsten Stoll</title>
+  <meta name="author" content="Carsten Stoll">
+  <meta name="description" content="Research on Motion and Performance Capture">
+  <meta name="keywords" content="research, computer-graphics, computer-vision, machine-learning, motion-capture, performance-capture, ai, digital humans">
+  <link rel="canonical" href="https://mindlink.industries/">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset & Base ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #e8e4df;
+      --ink-light: #b5b0a8;
+      --ink-muted: #8a857d;
+      --bg: #1e1e1e;
+      --bg-card: #282828;
+      --accent: #7eb8e0;
+      --accent-hover: #a8d0ee;
+      --border: #3a3a3a;
+      --border-light: #2e2e2e;
+      --serif: 'Source Serif 4', 'Georgia', serif;
+      --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
+      --max-w: 860px;
+      --side-pad: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+    a:hover { color: var(--accent-hover); }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── Header ────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 18px var(--side-pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink-light);
+      margin-left: 28px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover { color: var(--ink); }
+    nav a:hover::after { width: 100%; }
+
+    /* ── Main Container ────────────────────────────── */
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--side-pad);
+    }
+
+    /* ── Hero / Bio ────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 48px;
+      align-items: start;
+      padding: 56px 0 48px;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: var(--ink-light);
+      margin-bottom: 14px;
+      font-size: 0.97rem;
+    }
+
+    .hero p:last-child { margin-bottom: 0; }
+
+    .profile-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    /* ── Section Headings ──────────────────────────── */
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ink);
+      display: inline-block;
+    }
+
+    section { padding: 48px 0; }
+
+    /* ── Projects ──────────────────────────────────── */
+    .project {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .project img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .project h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      font-size: 0.93rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    /* ── Publications ──────────────────────────────── */
+    .pub-year {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 36px 0 16px;
+      color: var(--ink);
+    }
+
+    .pub-year:first-of-type { margin-top: 0; }
+
+    .pub {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .pub:last-child { border-bottom: none; }
+
+    .pub-thumb {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .pub-info h4 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      margin-bottom: 3px;
+    }
+
+    .pub-venue {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .pub-desc {
+      font-size: 0.87rem;
+      color: var(--ink-muted);
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .pub-links a {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      color: var(--accent);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .pub-links a:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    /* ── Footer ────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 32px var(--side-pad) 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links { display: flex; gap: 24px; }
+
+    .footer-links a {
+      color: var(--ink-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    /* ── Mobile Nav Toggle ─────────────────────────── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      margin: 5px 0;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* ── Responsive ────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 36px 0 32px;
+      }
+
+      .hero .hero-photo-col { order: -1; text-align: center; }
+
+      .profile-photo { width: 160px; height: 160px; margin: 0 auto; }
+
+      .hero h1 { font-size: 1.8rem; }
+
+      .project {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .pub {
+        grid-template-columns: 80px 1fr;
+        gap: 14px;
+      }
+
+      .pub-thumb { width: 80px; height: 56px; }
+
+      .nav-toggle { display: block; }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 16px var(--side-pad);
+      }
+
+      nav.open { display: block; }
+
+      nav a {
+        display: block;
+        margin: 0 0 12px 0;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Header ═══ -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="site-name">Carsten Stoll</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══ Hero / Bio ═══ -->
+    <section class="hero">
+      <div>
+        <h1>Carsten Stoll</h1>
+        <p>I am a Research Scientist at <a href="https://www.meta.com">Meta</a>, developing next-generation digital humans.</p>
+        <p>I earned my PhD in Computer Graphics and Computer Vision from the <a href="https://www.mpi-inf.mpg.de/departments/computer-graphics">Max-Planck Institute for Informatics</a> with <a href="https://people.mpi-inf.mpg.de/~theobalt/">Prof. Christian Theobalt</a>. I also led a group on Optical Performance Capture at the <a href="https://www.mpc-vcc.org/">Max-Planck Center for Visual Computing and Communication</a> and spent a year as visiting researcher at <a href="https://www.wetafx.co.nz/">Weta Digital</a>.</p>
+        <p>I cofounded <a href="https://www.thecaptury.com/">The Captury</a>, a company focused on real-time markerless motion capture, and then joined <a href="https://www.facebook.com/careers/life/facebook-reality-labs-turning-ideas-into-realities">Facebook Reality Labs</a> to work on full-body virtual humans. In 2020 I joined <a href="https://www.epicgames.com">Epic Games</a> to work on next-generation MetaHumans and real-time machine learning methods. In 2025 I rejoined Meta to help push virtual humans to the next level.</p>
+        <p>My research spans computer graphics, geometric modeling, animation, and computer vision. My goal is to create and control fully photorealistic, believable digital human avatars.</p>
+      </div>
+      <div class="hero-photo-col">
+        <img src="https://mindlink.industries/assets/img/prof_pic.jpg" alt="Carsten Stoll" class="profile-photo">
+      </div>
+    </section>
+
+    <!-- ═══ Projects ═══ -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="project">
+        <img src="https://mindlink.industries/assets/img/mhbody.jpg" alt="Metahuman Bodies">
+        <div>
+          <h3>Metahuman Bodies</h3>
+          <p>At <a href="https://www.epicgames.com">Epic Games</a> I led the research and technical development of a parametric body model for MetaHumans, released with <a href="https://www.metahuman.com/en-US/news/metahuman-leaves-early-access-with-a-feature-packed-new-release">Unreal Engine 5.6</a>. While prior versions of MetaHumans were based on discrete body types, the parametric model allows fine-grained direct and measurement-based editing of body shapes.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://mindlink.industries/assets/img/mldeformer.png" alt="ML Deformer">
+        <div>
+          <h3>ML Deformer</h3>
+          <p>I developed the ML model driving Unreal Engine's <a href="https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample">ML Deformer</a> plugin, which creates high-fidelity characters with deformations driven by full muscle, flesh, and cloth simulation running in real time. ML Deformer is now widely used in game development, including the Witcher 4 tech demo shown at Unreal Fest 2025.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://mindlink.industries/assets/img/momentum.png" alt="Momentum">
+        <div>
+          <h3>Momentum</h3>
+          <p>At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</a> library for human kinematics and numerical optimization, used to prototype markerless motion capture algorithms and for early versions of the Oculus VR headset upper-body tracking. We also published <a href="https://github.com/facebookresearch/mhr">MHR, the Momentum Human Rig</a>, an open-source parametric body model.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Publications ═══ -->
+    <section id="publications">
+      <h2 class="section-title">Publications</h2>
+
+      <!-- 2026 -->
+      <h3 class="pub-year">2026</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2026_cvpr_lca.jpg" alt="">
+        <div class="pub-info">
+          <h4>Large-scale Codec Avatars</h4>
+          <p class="pub-authors">Junxuan Li, Rawal Khirodkar, Chengan He, Zhongshi Jiang, Giljoo Nam, Lingchen Yang, Jihyun Lee, Egor Zakharov, Zhaoen Su, Rinat Abdrashitov, Yuan Dong, Julieta Martinez, Kai Li, Qingyang Tan, Takaaki Shiratori, Matthew Hu, Peihong Guo, Xuhua Huang, Ariyan Zarei, Marco Pesavento, Yichen Xu, He Wen, Teng Deng, Wyatt Borsos, Anjali Thakrar, Jean-Charles Bazin, <em>Carsten Stoll</em>, Ginés Hidalgo, James Booth, Lucy Wang, Xiaowen Ma, Yu Rong, Sairanjith Thalanki, Chen Cao, Christian Häne, Abhishek Kar, Sofien Bouaziz, Jason Saragih, Yaser Sheikh, and Shunsuke Saito</p>
+          <p class="pub-venue">arxiv, 2026</p>
+          <p class="pub-desc">LCA is a high-fidelity, full-body 3D avatar model that generalizes to world-scale populations in a feedforward manner. Inspired by the success of large language models, we introduce a pre/post-training paradigm for 3D avatar modeling: pretraining on diverse multi-view studio data and post-training on in-the-wild images. Given a handful of images, LCA produces identity-preserving 3D avatars driven by facial expressions, full-body motion, and fine-grained hand poses.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2604.02320">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2026_cvpr_lca.pdf">PDF</a>
+            <a href="https://youtu.be/eqFz2GFPIkE">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2025 -->
+      <h3 class="pub-year">2025</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2025_arxiv_mhr.jpg" alt="">
+        <div class="pub-info">
+          <h4>MHR: Momentum Human Rig</h4>
+          <p class="pub-authors">Aaron Ferguson, Ahmed A. A. Osman, Berta Bescos, <em>Carsten Stoll</em>, Chris Twigg, Christoph Lassner, David Otte, Eric Vignola, Fabian Prada, Federica Bogo, Igor Santesteban, Javier Romero, Jenna Zarate, Jeongseok Lee, Jinhyung Park, Jinlong Yang, John Doublestein, Kishore Venkateshan, Kris Kitani, Ladislav Kavan, Marco Dal Farra, Matthew Hu, Matthew Cioffi, Michael Fabris, Michael Ranieri, Mohammad Modarres, Petr Kadlecek, Rawal Khirodkar, Rinat Abdrashitov, Romain Prévost, Roman Rajbhandari, Ronald Mallet, Russell Pearsall, Sandy Kao, Sanjeev Kumar, Scott Parrish, Shoou-I Yu, Shunsuke Saito, Takaaki Shiratori, Te-Li Wang, Tony Tung, Yichen Xu, Yuan Dong, Yuhua Chen, Yuanlu Xu, Yuting Ye, and Zhongshi Jiang</p>
+          <p class="pub-venue">arxiv, 2025</p>
+          <p class="pub-desc">MHR is a parametric human body model that combines the decoupled skeleton/shape paradigm of ATLAS with a flexible, modern rig and pose corrective system inspired by the Momentum library. It enables expressive, anatomically plausible human animation with non-linear pose correctives, and is designed for robust integration in AR/VR and graphics pipelines. MHR is available as open source.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2511.15586">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2025_arxiv_mhr.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <h3 class="pub-year">2024</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2024_eccv_humos.jpg" alt="">
+        <div class="pub-info">
+          <h4>HUMOS: Human Motion Model Conditioned on Body Shape</h4>
+          <p class="pub-authors">Shashank Tripathi, Omid Taheri, Christoph Lassner, Michael J. Black, Daniel Holden, and <em>Carsten Stoll</em></p>
+          <p class="pub-venue">ECCV, 2024</p>
+          <p class="pub-desc">We introduce a generative motion model conditioned on body shape. Most existing models ignore how body proportions influence the way people move, relying on a standardized average body. Using cycle consistency, intuitive physics, and stability constraints on unpaired data, our approach generates diverse, physically plausible motions that reflect individual body characteristics.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2409.03944">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2024_eccv_humos.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2024_eccv_epoch.jpg" alt="">
+        <div class="pub-info">
+          <h4>EPOCH: Jointly Estimating the 3D Pose of Cameras and Humans</h4>
+          <p class="pub-authors">Nicola Garau, Giulia Martinelli, Niccolo Bisagno, Denis Tome, and <em>Carsten Stoll</em></p>
+          <p class="pub-venue">ECCV T-CAP Workshop, 2024</p>
+          <p class="pub-desc">EPOCH is a framework for monocular 3D human pose estimation that uses the full perspective camera model instead of common weak-perspective approximations. It jointly estimates camera parameters and 3D pose through a lifter network and a regressor network, establishing an unambiguous 2D-to-3D relationship. The approach achieves state-of-the-art results on Human3.6M and MPI-INF-3DHP with improved generalization to unseen data.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2406.19726">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2024_eccv_epoch.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2024_arxiv_fnerf.jpg" alt="">
+        <div class="pub-info">
+          <h4>fNeRF: High Quality Radiance Fields from Practical Cameras</h4>
+          <p class="pub-authors">Yi Hua, Christoph Lassner, <em>Carsten Stoll</em>, and <a href="https://www.iainm.com">Iain Matthews</a></p>
+          <p class="pub-venue">arxiv, 2024</p>
+          <p class="pub-desc">Standard Neural Radiance Fields use a pinhole camera model, which bakes defocus blur into the reconstruction. We propose a modified ray casting approach that leverages the optics of real lenses with finite aperture, modeling partial occlusions more faithfully than existing approximations. This yields sharper reconstructions with up to 3 dB PSNR improvement on synthetic and real datasets.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2406.10633">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2024_arxiv_fnerf.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2024-icassp_phisanet.jpg" alt="">
+        <div class="pub-info">
+          <h4>PhisaNet: Phonetically Informed Speech Animation Network</h4>
+          <p class="pub-authors">Salvador Medina, Sarah L. Taylor, <em>Carsten Stoll</em>, Gareth Edwards, Alex Hauptmann, Shinji Watanabe, and <a href="https://www.iainm.com">Iain Matthews</a></p>
+          <p class="pub-venue">ICASSP, 2024</p>
+          <p class="pub-desc">PhISANet leverages neural audio representations pre-trained on large speech corpora to map audio signals into animation parameters for the lower face and tongue of realistic 3D models. A CTC-based phonetic loss provides additional supervision, improving the phonetic accuracy of generated lip and tongue animation.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2024_icassp_phisanet.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <h3 class="pub-year">2023</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2023-iccvw-personalized_pose_and_shape.jpg" alt="">
+        <div class="pub-info">
+          <h4>Personalized 3D Human Pose and Shape Refinement</h4>
+          <p class="pub-authors">Tom Wehrbein, Bodo Rosenhahn, <a href="https://www.iainm.com">Iain Matthews</a>, and <em>Carsten Stoll</em></p>
+          <p class="pub-venue">IEEE/CVF ICCVW, 2023</p>
+          <p class="pub-desc">We propose a test-time optimization approach that refines 3D human pose and shape estimates for specific individuals, improving on generic feed-forward predictions. By exploiting temporal consistency and person-specific body shape priors during inference, the method adapts to individual body proportions and motion patterns without retraining.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2403.11634">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2023-iccvw-personalized_pose_and_shape.pdf">PDF</a>
+            <a href="https://mindlink.industries/assets/pdf/2023-iccvw-personalized_pose_and_shape_supp.pdf">Supp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2022 -->
+      <h3 class="pub-year">2022</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2022-cvpr-speech_driven_tongue_animation.jpg" alt="">
+        <div class="pub-info">
+          <h4>Speech Driven Tongue Animation</h4>
+          <p class="pub-authors">Salvador Medina, Denis Tomè, <em>Carsten Stoll</em>, Mark Tiede, Kevin Munhall, Alex Hauptmann, and <a href="https://www.iainm.com">Iain Matthews</a></p>
+          <p class="pub-venue">IEEE/CVF CVPR, 2022</p>
+          <p class="pub-desc">Most speech-driven facial animation focuses on lip motion and neglects the inner mouth. We introduce a large-scale speech and motion capture dataset focused on tongue, jaw, and lip movement, and propose a deep learning method using self-supervised audio feature encoders. The approach generalizes well to unseen speakers and content, enabling realistic tongue animation from audio alone.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2022-cvpr-speech_driven_tongue_animation.pdf">PDF</a>
+            <a href="https://salmedina.github.io/tongue-anim">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2021 -->
+      <h3 class="pub-year">2021</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2021_cvpr_anr.jpg" alt="">
+        <div class="pub-info">
+          <h4>ANR: Articulated Neural Rendering for Virtual Avatars</h4>
+          <p class="pub-authors">Amit Raj, Julian Tanke, James Hays, Minh Vo, <em>Carsten Stoll</em>, and Christoph Lassner</p>
+          <p class="pub-venue">IEEE CVPR, 2021</p>
+          <p class="pub-desc">We extend Deferred Neural Rendering to articulated human bodies, addressing challenges like mesh deformation inaccuracies and pose-dependent dynamics. ANR uses a neural shading step that explicitly accounts for geometric misalignment between a coarse mesh and the true surface. User studies show a clear preference for our approach over existing avatar creation and animation methods.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2012.12890">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2021_cvpr_anr.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2020 -->
+      <h3 class="pub-year">2020</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2020-eccv-texmesh.jpg" alt="">
+        <div class="pub-info">
+          <h4>TexMesh: Reconstructing Detailed Human Texture and Geometry from RGB-D Video</h4>
+          <p class="pub-authors">Tiancheng Zhi, Christoph Lassner, Tony Tung, <em>Carsten Stoll</em>, Srinivasa G. Narasimhan, and Minh Vo</p>
+          <p class="pub-venue">ECCV, 2020</p>
+          <p class="pub-desc">TexMesh reconstructs detailed human meshes with high-resolution full-body albedo texture from RGB-D video. By leveraging the captured environment illumination, we estimate local surface geometry and albedo, then use photometric constraints for self-supervised adaptation to real-world sequences. After a brief self-adaptation step, the method runs at interactive frame rates.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2008.00158">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2020-eccv-texmesh.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2020-eccv-patch_nets.jpg" alt="">
+        <div class="pub-info">
+          <h4>PatchNets: Patch-Based Generalizable Deep Implicit 3D Shape Representations</h4>
+          <p class="pub-authors">Edgar Tretschk, Ayush Tewari, Vladislav Golyanik, Michael Zollhöfer, <em>Carsten Stoll</em>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">ECCV, 2020</p>
+          <p class="pub-desc">We introduce a mid-level patch-based implicit surface representation that generalizes across object categories. By learning patch-level signed distance functions in a canonical space, a model trained on a single ShapeNet category can represent detailed shapes from any other category using far less training data. The representation also supports shape interpolation, point cloud completion, and non-rigid deformation.</p>
+          <div class="pub-links">
+            <a href="http://arxiv.org/abs/2008.01639">arXiv</a>
+            <a href="https://mindlink.industries/assets/pdf/2020-eccv-patch_nets.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2015 -->
+      <h3 class="pub-year">2015</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2015_cgf_outdoor_capture.jpg" alt="">
+        <div class="pub-info">
+          <h4>Outdoor Human Motion Capture by Simultaneous Optimization of Pose and Camera Parameters</h4>
+          <p class="pub-authors">Ahmed Elhayek, <em>Carsten Stoll</em>, Kwang In Kim, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">Eurographics, 2015</p>
+          <p class="pub-desc">We present a markerless motion capture method for outdoor settings with hand-held or moving cameras. The approach simultaneously optimizes skeletal pose and camera parameters, extending performance capture beyond controlled studio environments where camera positions are pre-calibrated.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2015_cgf_outdoor_capture.pdf">PDF</a>
+            <a href="https://youtu.be/7vjQ5F8P9d8">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2013 -->
+      <h3 class="pub-year">2013</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2013_cgf_relightable_performance.jpg" alt="">
+        <div class="pub-info">
+          <h4>Capturing Relightable Human Performances under General Uncontrolled Illumination</h4>
+          <p class="pub-authors">Guannan Li, Chenglei Wu, <em>Carsten Stoll</em>, Yebin Liu, Kiran Varanasi, Qionghai Dai, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">Eurographics, 2013</p>
+          <p class="pub-desc">We capture human performances that can be relit under novel illumination from multi-view video recorded under general, uncontrolled lighting. The method jointly estimates dynamic geometry, reflectance properties, and illumination, enabling realistic relighting of captured performances in post-production.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2013_cgf_relightable_performance.pdf">PDF</a>
+            <a href="https://youtu.be/F2pkedgP5yc">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2013_pami_multi_character.jpg" alt="">
+        <div class="pub-info">
+          <h4>Markerless Motion Capture of Multiple Characters Using Multiview Image Segmentation</h4>
+          <p class="pub-authors">Yebin Liu, Juergen Gall, <em>Carsten Stoll</em>, Qionghai Dai, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">IEEE PAMI, 2013</p>
+          <p class="pub-desc">We present a markerless motion capture approach for simultaneously tracking multiple characters from multi-view video. Multi-view image segmentation separates overlapping subjects and the method jointly estimates skeletal poses of all characters, enabling capture in scenes with close interactions where traditional methods fail due to occlusions.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2013_pami_multi_character.pdf">PDF</a>
+            <a href="https://youtu.be/-SHL_nyr8mk">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2013_sig_onset_perfcap.jpg" alt="">
+        <div class="pub-info">
+          <h4>On-set performance capture of multiple actors with a stereo camera</h4>
+          <p class="pub-authors">Chenglei Wu, <em>Carsten Stoll</em>, Levi Valgaerts, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">SIGGRAPH Asia, 2013</p>
+          <p class="pub-desc">We demonstrate on-set performance capture of multiple actors using only a single stereo camera pair, enabling markerless motion capture directly during film production. The method recovers skeletal motion and surface deformation of several actors simultaneously, making it practical for use on real film sets with minimal equipment.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2013_sig_onset_perfcap.pdf">PDF</a>
+            <a href="https://youtu.be/lSB4m9TKzYE">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2012 -->
+      <h3 class="pub-year">2012</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2012_cgf_spatiotemporal_filtering.jpg" alt="">
+        <div class="pub-info">
+          <h4>Coherent Spatiotemporal Filtering, Upsampling and Rendering of RGBZ Videos</h4>
+          <p class="pub-authors">Christian Richardt, <em>Carsten Stoll</em>, Neil A. Dodgson, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">Eurographics, 2012</p>
+          <p class="pub-desc">We present a framework for coherent spatiotemporal processing of combined color and depth (RGBZ) video. The method jointly filters, upsamples, and renders noisy or low-resolution depth data alongside color imagery, producing temporally stable results suitable for free-viewpoint video and 3D display applications.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2012_cgf_spatiotemporal_filtering.pdf">PDF</a>
+            <a href="https://youtu.be/aniaezg-Mjw">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2012_cvpr_spactime_tracking.jpg" alt="">
+        <div class="pub-info">
+          <h4>Spatio-temporal motion tracking with unsynchronized cameras</h4>
+          <p class="pub-authors">Ahmed Elhayek, <em>Carsten Stoll</em>, Nils Hasler, Kwang In Kim, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">IEEE CVPR, 2012</p>
+          <p class="pub-desc">We propose markerless human motion tracking from multiple unsynchronized cameras, removing a key practical limitation of multi-view capture. The approach jointly optimizes spatio-temporal alignment and skeletal pose, enabling motion capture with commodity cameras that lack hardware synchronization.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2012_cvpr_spactime_tracking.pdf">PDF</a>
+            <a href="https://youtu.be/sS_hq%E2%80%93Nb8A">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2012_dagm_video_synchronization.jpg" alt="">
+        <div class="pub-info">
+          <h4>Feature-Based Multi-video Synchronization with Subframe Accuracy</h4>
+          <p class="pub-authors">Ahmed Elhayek, <em>Carsten Stoll</em>, Kwang In Kim, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">DAGM, 2012</p>
+          <p class="pub-desc">We present a feature-based approach to temporally synchronize multiple video streams with subframe accuracy. Image features establish correspondences across views and precise temporal offsets are estimated, enabling the use of unsynchronized consumer cameras for multi-view reconstruction and motion capture.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2012_dagm_video_synchronization.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2011 -->
+      <h3 class="pub-year">2011</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2011_sig_video_based_characters.jpg" alt="">
+        <div class="pub-info">
+          <h4>Video-based characters: creating new human performances from a multi-view video database</h4>
+          <p class="pub-authors">Feng Xu, Yebin Liu, <em>Carsten Stoll</em>, James Tompkin, Gaurav Bharaj, Qionghai Dai, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, Jan Kautz, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">SIGGRAPH Asia, 2011</p>
+          <p class="pub-desc">We synthesize novel human performances by recombining motion segments from a multi-view video database. The approach creates character animations that were never actually performed, stitching captured clips together while maintaining visual coherence and realistic transitions between segments.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2011_sig_video_based_characters.pdf">PDF</a>
+            <a href="https://youtu.be/GT0Qcl3BY-k">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2011_cvpr_interacting_characters.jpg" alt="">
+        <div class="pub-info">
+          <h4>Markerless motion capture of interacting characters using multi-view image segmentation</h4>
+          <p class="pub-authors">Yebin Liu, <em>Carsten Stoll</em>, Juergen Gall, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">CVPR, 2011</p>
+          <p class="pub-desc">We propose a markerless capture method that handles closely interacting characters by using multi-view image segmentation to resolve inter-person occlusions. The approach jointly segments and tracks multiple people, enabling robust motion capture in scenarios where subjects are in close physical contact.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2011_cvpr_interacting_characters.pdf">PDF</a>
+            <a href="https://youtu.be/udEWiYSK35M">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2011_iccv_sum_of_gaussians.jpg" alt="">
+        <div class="pub-info">
+          <h4>Fast articulated motion tracking using a sums of Gaussians body model</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Nils Hasler, Juergen Gall, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">ICCV, 2011</p>
+          <p class="pub-desc">We represent the human body as a sum of Gaussian density functions for fast articulated tracking. This smooth, differentiable representation enables efficient gradient-based optimization for pose estimation from multi-view silhouettes, achieving real-time performance for full-body markerless motion capture.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2011_iccv_sum_of_gaussians.pdf">PDF</a>
+            <a href="https://youtu.be/XoNKG9054I4">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2010 -->
+      <h3 class="pub-year">2010</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2010_sig_video_reconstruction.jpg" alt="">
+        <div class="pub-info">
+          <h4>Video-based reconstruction of animatable human characters</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Juergen Gall, Edilson Aguiar, Sebastian Thrun, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">SIGGRAPH Asia, 2010</p>
+          <p class="pub-desc">We present a complete pipeline for reconstructing fully animatable human characters from multi-view video. The method captures both skeletal motion and detailed surface deformations, producing rigged characters that can be reanimated with new motions while preserving realistic soft-tissue dynamics from the original footage.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2010_sig_video_reconstruction.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2010_eccv_motion_structure.jpg" alt="">
+        <div class="pub-info">
+          <h4>Joint Estimation of Motion, Structure and Geometry from Stereo Sequences</h4>
+          <p class="pub-authors">Levi Valgaerts, Andrés Bruhn, Henning Zimmer, Joachim Weickert, <em>Carsten Stoll</em>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
+          <p class="pub-venue">ECCV, 2010</p>
+          <p class="pub-desc">We propose a variational framework for jointly estimating dense optical flow, scene depth, and 3D surface geometry from stereo image sequences. Coupling these problems into a single energy functional exploits their mutual dependencies, yielding more accurate and consistent results than solving them independently.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2010_eccv_motion_structure.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2009 -->
+      <h3 class="pub-year">2009</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2009_template_processing.jpg" alt="">
+        <div class="pub-info">
+          <h4>Template based shape processing</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em></p>
+          <p class="pub-venue">Saarland University, 2009 (PhD Thesis)</p>
+          <p class="pub-desc">My PhD dissertation presents a unified framework for using template meshes to process and reconstruct 3D shapes. It covers template deformation for point cloud fitting, performance capture from multi-view video, and volumetric shape editing, establishing foundational techniques for subsequent work in human body capture.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2009_template_processing.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2009_cag_estimating_body.jpg" alt="">
+        <div class="pub-info">
+          <h4>Estimating body shape of dressed humans</h4>
+          <p class="pub-authors">Nils Hasler, <em>Carsten Stoll</em>, Bodo Rosenhahn, Thorsten Thormählen, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">Shape Modeling International, 2009</p>
+          <p class="pub-desc">We address the problem of estimating the underlying body shape of a person wearing clothing. A statistical body model is fitted to 3D scan data of dressed subjects, using shape priors to infer the body surface beneath garments. This enables body shape estimation from practical input without requiring the subject to undress.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2009_cag_estimating_body.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2009_cgf_statistical_model.jpg" alt="">
+        <div class="pub-info">
+          <h4>A Statistical Model of Human Pose and Body Shape</h4>
+          <p class="pub-authors">Nils Hasler, <em>Carsten Stoll</em>, Martin Sunkel, Bodo Rosenhahn, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">Eurographics, 2009</p>
+          <p class="pub-desc">We present a statistical model that jointly captures the variability of human body shape and pose from a large corpus of 3D body scans. The model disentangles shape identity from pose-dependent deformations, enabling synthesis of novel body shapes in arbitrary poses and providing a strong prior for body reconstruction.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2009_cgf_statistical_model.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2009_cvpr_mocap_skeleton.jpg" alt="">
+        <div class="pub-info">
+          <h4>Motion capture using joint skeleton tracking and surface estimation</h4>
+          <p class="pub-authors">Juergen Gall, <em>Carsten Stoll</em>, Edilson Aguiar, <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a>, Bodo Rosenhahn, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">IEEE CVPR, 2009</p>
+          <p class="pub-desc">We propose a markerless motion capture method that jointly tracks the skeleton and estimates the body surface from multi-view video. Coupling skeletal pose estimation with non-rigid surface deformation in a unified optimization captures both the articulated motion and detailed surface geometry of the performer.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2009_cvpr_mocap_skeleton.pdf">PDF</a>
+            <a href="https://youtu.be/HtSn_EB-3wg">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2008 -->
+      <h3 class="pub-year">2008</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2008_sig_performance_capture.jpg" alt="">
+        <div class="pub-info">
+          <h4>Performance capture from sparse multi-view video</h4>
+          <p class="pub-authors">Edilson Aguiar, <em>Carsten Stoll</em>, <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a>, Naveed Ahmed, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and Sebastian Thrun</p>
+          <p class="pub-venue">ACM SIGGRAPH, 2008</p>
+          <p class="pub-desc">We demonstrate high-quality performance capture from only a sparse set of cameras, significantly reducing the number required compared to prior dense capture setups. A template mesh is deformed to match multi-view silhouettes and sparse feature correspondences, recovering detailed non-rigid surface motion of the performer.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2008_sig_performance_capture.pdf">PDF</a>
+            <a href="https://youtu.be/tR4llZre2Dk">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2007 -->
+      <h3 class="pub-year">2007</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2007_cvpr_markerless_deformable.jpg" alt="">
+        <div class="pub-info">
+          <h4>Marker-less Deformable Mesh Tracking for Human Shape and Motion Capture</h4>
+          <p class="pub-authors">Edilson Aguiar, <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a>, <em>Carsten Stoll</em>, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">IEEE CVPR, 2007</p>
+          <p class="pub-desc">One of the early methods for markerless human shape and motion capture using deformable mesh tracking from multi-view video. We track a template mesh through a sequence by optimizing a deformation field that matches observed silhouettes and image features across all views.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2007_cvpr_markerless_deformable.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2007_tr_volumetric_editing.jpg" alt="">
+        <div class="pub-info">
+          <h4>A Volumetric Approach to Interactive Shape Editing</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Edilson Aguiar, <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a>, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">Technical Report, 2007</p>
+          <p class="pub-desc">We propose a volumetric approach for interactive 3D shape editing, where deformations are defined in the embedding volume rather than directly on the surface. This enables intuitive, physically-inspired modifications that preserve surface detail and topology during large-scale edits.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2007_tr_volumetric_editing.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2007_vr_rapid_animation.jpg" alt="">
+        <div class="pub-info">
+          <h4>Rapid Animation of Laser-scanned Humans</h4>
+          <p class="pub-authors">Edilson Aguiar, <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a>, <em>Carsten Stoll</em>, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">IEEE VR, 2007</p>
+          <p class="pub-desc">We present a method for quickly rigging and animating detailed 3D human models from laser scans. A skeleton and skinning weights are automatically fitted to the scanned geometry, enabling rapid creation of animatable characters from static scan data without manual rigging.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2007_vr_rapid_animation.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2007_pg_geodesics.jpg" alt="">
+        <div class="pub-info">
+          <h4>Geodesics guided constrained texture deformation</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Zachi Karni, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">Pacific Graphics, 2007</p>
+          <p class="pub-desc">We introduce a method for deforming texture coordinates on 3D meshes guided by geodesic distances, enabling constrained texture mapping that follows the intrinsic surface geometry. Geodesic paths guide how textures stretch and flow across the shape, preserving coherence during surface deformation.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2007_pg_geodesics.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2006 -->
+      <h3 class="pub-year">2006</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2006_sma_bsp_shapes.jpg" alt="">
+        <div class="pub-info">
+          <h4>BSP Shapes</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and Marc Alexa</p>
+          <p class="pub-venue">Shape Modeling and Applications, 2006</p>
+          <p class="pub-desc">We present a shape representation based on binary space partitioning (BSP) trees that supports efficient Boolean operations and constructive solid geometry. The approach provides a compact, hierarchical representation of complex 3D shapes enabling fast inside/outside queries and set operations.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2006_sma_bsp_shapes.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2006_rt_raycasting_quadratic.jpg" alt="">
+        <div class="pub-info">
+          <h4>Incremental Raycasting of Piecewise Quadratic Surfaces on the GPU</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Stefan Gumhold, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">Symposium on Interactive Raytracing, 2006</p>
+          <p class="pub-desc">We introduce a GPU-based incremental raycasting algorithm for rendering piecewise quadratic surfaces at interactive rates. The method exploits the mathematical structure of quadratic patches for efficient ray-surface intersection, enabling high-quality rendering of smooth curved surfaces in real time.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2006_rt_raycasting_quadratic.pdf">PDF</a>
+            <a href="https://youtu.be/ZuvmpzI30Gk">Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2006_pbg_template_deformation.jpg" alt="">
+        <div class="pub-info">
+          <h4>Template Deformation for Point Cloud Fitting</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Zachi Karni, Christian Rössl, Hitoshi Yamauchi, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">Point Based Graphics @ SIGGRAPH, 2006</p>
+          <p class="pub-desc">We present a method for fitting a template mesh to unstructured point cloud data through non-rigid deformation. The template is deformed to match the target point set while preserving mesh quality and surface detail, providing a robust way to obtain clean, connected meshes from noisy scan data.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2006_pbg_template_deformation.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2005 -->
+      <h3 class="pub-year">2005</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2005_vis_stylized_lines.jpg" alt="">
+        <div class="pub-info">
+          <h4>Visualization with stylized line primitives</h4>
+          <p class="pub-authors"><em>Carsten Stoll</em>, Stefan Gumhold, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
+          <p class="pub-venue">IEEE Vis, 2005</p>
+          <p class="pub-desc">We propose stylized line primitives for scientific visualization, enabling expressive non-photorealistic rendering of flow fields and vector data. The method renders line-based visual elements with controllable attributes like thickness, opacity, and curvature to effectively convey complex data patterns.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2005_vis_stylized_lines.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2003 -->
+      <h3 class="pub-year">2003</h3>
+
+      <div class="pub">
+        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2003_wscg_direction_fields.jpg" alt="">
+        <div class="pub-info">
+          <h4>Direction Fields over Point-Sampled Geometry</h4>
+          <p class="pub-authors">Marc Alexa, Tobias Klug, and <em>Carsten Stoll</em></p>
+          <p class="pub-venue">WSCG, 2003</p>
+          <p class="pub-desc">We define and compute smooth direction fields directly on point-sampled surfaces without requiring an explicit mesh. This enables downstream operations like texture synthesis and non-photorealistic rendering on point-based geometry by establishing a consistent tangent frame across the point set.</p>
+          <div class="pub-links">
+            <a href="https://mindlink.industries/assets/pdf/2003_wscg_direction_fields.pdf">PDF</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ═══ Footer ═══ -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:carsten@motionin.space">Email</a>
+        <a href="https://scholar.google.com/citations?user=ArKKNxwAAAAJ">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/carstenstoll">LinkedIn</a>
+        <a href="https://dblp.org/pid/s/CarstenStoll.html">DBLP</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Carsten Stoll</p>
+    </div>
+  </footer>
+
+  <!-- ═══ Minimal JS: close mobile nav on link click ═══ -->
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('nav').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
