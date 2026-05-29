@@ -53,7 +53,9 @@
     /* ── Header ────────────────────────────────────── */
     header {
       border-bottom: 1px solid var(--border);
-      background: var(--bg);
+      background: rgba(30, 30, 30, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -134,7 +136,7 @@
     .profile-photo {
       width: 220px;
       height: 220px;
-      border-radius: 12px;
+      border-radius: 50%;
       object-fit: cover;
       border: 1px solid var(--border);
     }
@@ -168,6 +170,8 @@
 
     .project img {
       width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       border-radius: 8px;
       border: 1px solid var(--border);
     }
@@ -185,13 +189,108 @@
       line-height: 1.6;
     }
 
-    /* ── Publications ──────────────────────────────── */
+    /* ── Featured pill ─────────────────────────────── */
+    .pub.featured { position: relative; }
+
+    .featured-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 3px;
+      padding: 1px 7px;
+      margin-bottom: 5px;
+      opacity: 0.85;
+    }
+
+    /* ── Expertise tags ────────────────────────────── */
+    .expertise {
+      margin-top: 20px;
+    }
+
+    .expertise-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      background: var(--border-light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 9px;
+      line-height: 1.4;
+    }
+
+    /* ── News / Recent section ─────────────────────── */
+    .news-section {
+      padding: 0 0 40px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .news-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+    }
+
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .news-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .news-date {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      min-width: 72px;
+    }
+
+    .news-list a {
+      color: var(--ink-light);
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .news-list a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
     .pub-year {
       font-family: var(--serif);
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 600;
       margin: 36px 0 16px;
-      color: var(--ink);
+      color: var(--accent);
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
     }
 
     .pub-year:first-of-type { margin-top: 0; }
@@ -229,6 +328,21 @@
       margin-bottom: 3px;
     }
 
+    .authors-collapsed { display: none; }
+
+    .authors-toggle {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 4px;
+    }
+
+    .authors-toggle:hover { color: var(--accent-hover); }
+
     .pub-venue {
       font-size: 0.83rem;
       color: var(--ink-muted);
@@ -238,7 +352,7 @@
 
     .pub-desc {
       font-size: 0.87rem;
-      color: var(--ink-muted);
+      color: var(--ink-light);
       line-height: 1.55;
       margin-bottom: 8px;
     }
@@ -324,7 +438,7 @@
 
       .hero .hero-photo-col { order: -1; text-align: center; }
 
-      .profile-photo { width: 160px; height: 160px; margin: 0 auto; }
+      .profile-photo { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto; }
 
       .hero h1 { font-size: 1.8rem; }
 
@@ -386,14 +500,50 @@
       <div>
         <h1>Carsten Stoll</h1>
         <p>I am a Research Scientist at <a href="https://www.meta.com">Meta</a>, developing next-generation digital humans.</p>
-        <p>I earned my PhD in Computer Graphics and Computer Vision from the <a href="https://www.mpi-inf.mpg.de/departments/computer-graphics">Max-Planck Institute for Informatics</a> with <a href="https://people.mpi-inf.mpg.de/~theobalt/">Prof. Christian Theobalt</a>. I also led a group on Optical Performance Capture at the <a href="https://www.mpc-vcc.org/">Max-Planck Center for Visual Computing and Communication</a> and spent a year as visiting researcher at <a href="https://www.wetafx.co.nz/">Weta Digital</a>.</p>
-        <p>I cofounded <a href="https://www.thecaptury.com/">The Captury</a>, a company focused on real-time markerless motion capture, and then joined <a href="https://www.facebook.com/careers/life/facebook-reality-labs-turning-ideas-into-realities">Facebook Reality Labs</a> to work on full-body virtual humans. In 2020 I joined <a href="https://www.epicgames.com">Epic Games</a> to work on next-generation MetaHumans and real-time machine learning methods. In 2025 I rejoined Meta to help push virtual humans to the next level.</p>
+        <p>I earned my PhD in Computer Graphics and Computer Vision from the <a href="https://www.mpi-inf.mpg.de/departments/computer-graphics">Max-Planck Institute for Informatics</a> with <a href="https://people.mpi-inf.mpg.de/~theobalt/">Prof. Christian Theobalt</a>. I also led the Optical Performance Capture group at the <a href="https://www.mpc-vcc.org/">Max-Planck Center for Visual Computing and Communication</a> and spent a year as a visiting researcher at <a href="https://www.wetafx.co.nz/">Weta Digital</a>.</p>
+        <p>I cofounded <a href="https://www.thecaptury.com/">The Captury</a>, a company focused on real-time markerless motion capture, and then joined <a href="https://www.facebook.com/careers/life/facebook-reality-labs-turning-ideas-into-realities">Facebook Reality Labs</a> to work on full-body virtual humans. In 2020 I joined <a href="https://www.epicgames.com">Epic Games</a> to work on next-generation MetaHumans and real-time machine learning methods. In 2025 I rejoined Meta to advance the state of the art in photorealistic human avatars.</p>
         <p>My research spans computer graphics, geometric modeling, animation, and computer vision. My goal is to create and control fully photorealistic, believable digital human avatars.</p>
       </div>
       <div class="hero-photo-col">
         <img src="https://mindlink.industries/assets/img/prof_pic.jpg" alt="Carsten Stoll" class="profile-photo">
+        <div class="expertise">
+          <p class="expertise-label">Expertise</p>
+          <div class="expertise-tags">
+            <span class="tag">Digital Humans</span>
+            <span class="tag">Body Modeling</span>
+            <span class="tag">Motion Capture</span>
+            <span class="tag">Neural Rendering</span>
+            <span class="tag">Real-time ML</span>
+            <span class="tag">Performance Capture</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Character Animation</span>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- ═══ Recent ═══ -->
+    <div class="news-section">
+      <p class="news-title">Recent</p>
+      <ul class="news-list">
+        <li>
+          <span class="news-date">Apr 2026</span>
+          <span><a href="http://arxiv.org/abs/2604.02320">Large-scale Codec Avatars</a> — full-body avatar model generalizing to world-scale populations, preprint released</span>
+        </li>
+        <li>
+          <span class="news-date">Nov 2025</span>
+          <span><a href="https://github.com/facebookresearch/mhr">MHR open-sourced</a> — Momentum Human Rig released as an open-source parametric body model</span>
+        </li>
+        <li>
+          <span class="news-date">Jun 2025</span>
+          <span><a href="https://www.metahuman.com/en-US/news/metahuman-leaves-early-access-with-a-feature-packed-new-release">MetaHuman Bodies ships with Unreal Engine 5.6</a> — parametric body model now available to all UE developers</span>
+        </li>
+        <li>
+          <span class="news-date">Jun 2025</span>
+          <span><a href="https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample">ML Deformer</a> featured in the Witcher 4 tech demo at Unreal Fest 2025</span>
+        </li>
+      </ul>
+    </div>
 
     <!-- ═══ Projects ═══ -->
     <section id="projects">
@@ -411,7 +561,7 @@
         <img src="https://mindlink.industries/assets/img/mldeformer.png" alt="ML Deformer">
         <div>
           <h3>ML Deformer</h3>
-          <p>I developed the ML model driving Unreal Engine's <a href="https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample">ML Deformer</a> plugin, which creates high-fidelity characters with deformations driven by full muscle, flesh, and cloth simulation running in real time. ML Deformer is now widely used in game development, including the Witcher 4 tech demo shown at Unreal Fest 2025.</p>
+          <p>I developed the ML model driving Unreal Engine's <a href="https://www.unrealengine.com/marketplace/en-US/product/ml-deformer-sample">ML Deformer</a> plugin, which trains a neural network to approximate full muscle, flesh, and cloth simulation at real-time speeds. The result is high-fidelity character deformation that would be far too costly to simulate directly. ML Deformer is now widely used in game development, including the Witcher 4 tech demo shown at Unreal Fest 2025.</p>
         </div>
       </div>
 
@@ -419,7 +569,15 @@
         <img src="https://mindlink.industries/assets/img/momentum.png" alt="Momentum">
         <div>
           <h3>Momentum</h3>
-          <p>At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</a> library for human kinematics and numerical optimization, used to prototype markerless motion capture algorithms and for early versions of the Oculus VR headset upper-body tracking. We also published <a href="https://github.com/facebookresearch/mhr">MHR, the Momentum Human Rig</a>, an open-source parametric body model.</p>
+          <p>At Facebook/Oculus Research I developed the <a href="https://facebookincubator.github.io/momentum/">Momentum</a> library for human kinematics and numerical optimization, used to prototype markerless motion capture algorithms and for early versions of the Oculus VR headset upper-body tracking. We also published <a href="https://github.com/facebookresearch/mhr">MHR, the Momentum Human Rig</a>, an open-source parametric body model built on Momentum.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://mindlink.industries/assets/img/captury.png" alt="The Captury">
+        <div>
+          <h3>The Captury</h3>
+          <p>I cofounded <a href="https://www.thecaptury.com/">The Captury</a> to commercialize the markerless motion capture research from my <a href="#pub-sog">2011 ICCV paper</a> on the Sums of Gaussians body model. The system brought real-time, marker-free full-body capture to production environments — film sets, sports analytics, and game studios — without the suit or studio setup that traditional systems required.</p>
         </div>
       </div>
     </section>
@@ -431,12 +589,13 @@
       <!-- 2026 -->
       <h3 class="pub-year">2026</h3>
 
-      <div class="pub">
+      <div class="pub featured">
         <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2026_cvpr_lca.jpg" alt="">
         <div class="pub-info">
+          <span class="featured-badge">Featured</span>
           <h4>Large-scale Codec Avatars</h4>
-          <p class="pub-authors">Junxuan Li, Rawal Khirodkar, Chengan He, Zhongshi Jiang, Giljoo Nam, Lingchen Yang, Jihyun Lee, Egor Zakharov, Zhaoen Su, Rinat Abdrashitov, Yuan Dong, Julieta Martinez, Kai Li, Qingyang Tan, Takaaki Shiratori, Matthew Hu, Peihong Guo, Xuhua Huang, Ariyan Zarei, Marco Pesavento, Yichen Xu, He Wen, Teng Deng, Wyatt Borsos, Anjali Thakrar, Jean-Charles Bazin, <em>Carsten Stoll</em>, Ginés Hidalgo, James Booth, Lucy Wang, Xiaowen Ma, Yu Rong, Sairanjith Thalanki, Chen Cao, Christian Häne, Abhishek Kar, Sofien Bouaziz, Jason Saragih, Yaser Sheikh, and Shunsuke Saito</p>
-          <p class="pub-venue">IEEE/CVF CVPR, 2026</p>
+          <p class="pub-authors">Junxuan Li, Rawal Khirodkar, Chengan He, Zhongshi Jiang, Giljoo Nam<span class="authors-collapsed" id="lca-authors">, Lingchen Yang, Jihyun Lee, Egor Zakharov, Zhaoen Su, Rinat Abdrashitov, Yuan Dong, Julieta Martinez, Kai Li, Qingyang Tan, Takaaki Shiratori, Matthew Hu, Peihong Guo, Xuhua Huang, Ariyan Zarei, Marco Pesavento, Yichen Xu, He Wen, Teng Deng, Wyatt Borsos, Anjali Thakrar, Jean-Charles Bazin, <em>Carsten Stoll</em>, Ginés Hidalgo, James Booth, Lucy Wang, Xiaowen Ma, Yu Rong, Sairanjith Thalanki, Chen Cao, Christian Häne, Abhishek Kar, Sofien Bouaziz, Jason Saragih, Yaser Sheikh, and Shunsuke Saito</span><button class="authors-toggle" onclick="toggleAuthors('lca-authors', this)">+35 more</button></p>
+          <p class="pub-venue">arxiv, 2026</p>
           <p class="pub-desc">LCA is a high-fidelity, full-body 3D avatar model that generalizes to world-scale populations in a feedforward manner. Inspired by the success of large language models, we introduce a pre/post-training paradigm for 3D avatar modeling: pretraining on diverse multi-view studio data and post-training on in-the-wild images. Given a handful of images, LCA produces identity-preserving 3D avatars driven by facial expressions, full-body motion, and fine-grained hand poses.</p>
           <div class="pub-links">
             <a href="http://arxiv.org/abs/2604.02320">arXiv</a>
@@ -453,7 +612,7 @@
         <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2025_arxiv_mhr.jpg" alt="">
         <div class="pub-info">
           <h4>MHR: Momentum Human Rig</h4>
-          <p class="pub-authors">Aaron Ferguson, Ahmed A. A. Osman, Berta Bescos, <em>Carsten Stoll</em>, Chris Twigg, Christoph Lassner, David Otte, Eric Vignola, Fabian Prada, Federica Bogo, Igor Santesteban, Javier Romero, Jenna Zarate, Jeongseok Lee, Jinhyung Park, Jinlong Yang, John Doublestein, Kishore Venkateshan, Kris Kitani, Ladislav Kavan, Marco Dal Farra, Matthew Hu, Matthew Cioffi, Michael Fabris, Michael Ranieri, Mohammad Modarres, Petr Kadlecek, Rawal Khirodkar, Rinat Abdrashitov, Romain Prévost, Roman Rajbhandari, Ronald Mallet, Russell Pearsall, Sandy Kao, Sanjeev Kumar, Scott Parrish, Shoou-I Yu, Shunsuke Saito, Takaaki Shiratori, Te-Li Wang, Tony Tung, Yichen Xu, Yuan Dong, Yuhua Chen, Yuanlu Xu, Yuting Ye, and Zhongshi Jiang</p>
+          <p class="pub-authors">Aaron Ferguson, Ahmed A. A. Osman, Berta Bescos, <em>Carsten Stoll</em>, Chris Twigg<span class="authors-collapsed" id="mhr-authors">, Christoph Lassner, David Otte, Eric Vignola, Fabian Prada, Federica Bogo, Igor Santesteban, Javier Romero, Jenna Zarate, Jeongseok Lee, Jinhyung Park, Jinlong Yang, John Doublestein, Kishore Venkateshan, Kris Kitani, Ladislav Kavan, Marco Dal Farra, Matthew Hu, Matthew Cioffi, Michael Fabris, Michael Ranieri, Mohammad Modarres, Petr Kadlecek, Rawal Khirodkar, Rinat Abdrashitov, Romain Prévost, Roman Rajbhandari, Ronald Mallet, Russell Pearsall, Sandy Kao, Sanjeev Kumar, Scott Parrish, Shoou-I Yu, Shunsuke Saito, Takaaki Shiratori, Te-Li Wang, Tony Tung, Yichen Xu, Yuan Dong, Yuhua Chen, Yuanlu Xu, Yuting Ye, and Zhongshi Jiang</span><button class="authors-toggle" onclick="toggleAuthors('mhr-authors', this)">+42 more</button></p>
           <p class="pub-venue">arxiv, 2025</p>
           <p class="pub-desc">MHR is a parametric human body model that combines the decoupled skeleton/shape paradigm of ATLAS with a flexible, modern rig and pose corrective system inspired by the Momentum library. It enables expressive, anatomically plausible human animation with non-linear pose correctives, and is designed for robust integration in AR/VR and graphics pipelines. MHR is available as open source.</p>
           <div class="pub-links">
@@ -559,9 +718,10 @@
       <!-- 2021 -->
       <h3 class="pub-year">2021</h3>
 
-      <div class="pub">
+      <div class="pub featured">
         <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2021_cvpr_anr.jpg" alt="">
         <div class="pub-info">
+          <span class="featured-badge">Featured</span>
           <h4>ANR: Articulated Neural Rendering for Virtual Avatars</h4>
           <p class="pub-authors">Amit Raj, Julian Tanke, James Hays, Minh Vo, <em>Carsten Stoll</em>, and Christoph Lassner</p>
           <p class="pub-venue">IEEE CVPR, 2021</p>
@@ -741,9 +901,9 @@
         </div>
       </div>
 
-      <div class="pub">
-        <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2011_iccv_sum_of_gaussians.jpg" alt="">
+      <div class="pub featured" id="pub-sog">
         <div class="pub-info">
+          <span class="featured-badge">Featured</span>
           <h4>Fast articulated motion tracking using a sums of Gaussians body model</h4>
           <p class="pub-authors"><em>Carsten Stoll</em>, Nils Hasler, Juergen Gall, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a></p>
           <p class="pub-venue">ICCV, 2011</p>
@@ -813,9 +973,10 @@
         </div>
       </div>
 
-      <div class="pub">
+      <div class="pub featured">
         <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2009_cgf_statistical_model.jpg" alt="">
         <div class="pub-info">
+          <span class="featured-badge">Featured</span>
           <h4>A Statistical Model of Human Pose and Body Shape</h4>
           <p class="pub-authors">Nils Hasler, <em>Carsten Stoll</em>, Martin Sunkel, Bodo Rosenhahn, and <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a></p>
           <p class="pub-venue">Eurographics, 2009</p>
@@ -843,9 +1004,10 @@
       <!-- 2008 -->
       <h3 class="pub-year">2008</h3>
 
-      <div class="pub">
+      <div class="pub featured">
         <img class="pub-thumb" src="https://mindlink.industries/assets/img/publication_preview/2008_sig_performance_capture.jpg" alt="">
         <div class="pub-info">
+          <span class="featured-badge">Featured</span>
           <h4>Performance capture from sparse multi-view video</h4>
           <p class="pub-authors">Edilson Aguiar, <em>Carsten Stoll</em>, <a href="https://people.mpi-inf.mpg.de/~theobalt">Christian Theobalt</a>, Naveed Ahmed, <a href="https://people.mpi-inf.mpg.de/~hpseidel/">Hans-Peter Seidel</a>, and Sebastian Thrun</p>
           <p class="pub-venue">ACM SIGGRAPH, 2008</p>
@@ -1003,13 +1165,26 @@
     </div>
   </footer>
 
-  <!-- ═══ Minimal JS: close mobile nav on link click ═══ -->
+  <!-- ═══ Minimal JS ═══ -->
   <script>
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         document.querySelector('nav').classList.remove('open');
       });
     });
+
+    function toggleAuthors(id, btn) {
+      const el = document.getElementById(id);
+      const isCollapsed = el.classList.contains('authors-collapsed');
+      if (isCollapsed) {
+        btn.dataset.more = btn.textContent;
+        el.classList.remove('authors-collapsed');
+        btn.textContent = 'show less';
+      } else {
+        el.classList.add('authors-collapsed');
+        btn.textContent = btn.dataset.more;
+      }
+    }
   </script>
 
 </body>
